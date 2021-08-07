@@ -21,6 +21,7 @@
 
 ;;; Code:
 (require 'cl-macs)
+(require 'magit)
 
 (defvar-local magit-async-section-inhibit-fetch nil "Prevent async section from fetching data.")
 
@@ -36,12 +37,10 @@ triggers a buffer redraw without fetching data again."
                (let ((magit-async-section-inhibit-fetch t)) (magit-refresh))))))
 
 (defun magit-async-section-register-finish (fetcher inserter at append)
-  "Fetch data using FETCHER, run INSERTER after section AT with APPEND.
-
-ARGS is the argument passed by fetcher."
+  "Fetch data using FETCHER, run INSERTER after section AT with APPEND."
   (magit-add-section-hook 'magit-status-sections-hook inserter at append t)
   (magit-refresh)
-  (add-hook 'magit-refresh-buffer-hook (apply-partially #'magit-async-section-refresh fetcher)))
+  (add-hook 'magit-refresh-buffer-hook (apply-partially #'magit-async-section-refresh fetcher) nil t))
 
 (defun magit-async-section-register (fetcher inserter at append)
   "Fetch data using FETCHER, register INSERTER function after section AT with APPEND."
