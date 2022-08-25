@@ -1,4 +1,4 @@
-;;; magit-async-section.el -- Magit asynchronous section support -*- lexical-binding: t; -*-
+;;; magit-async-section.el --- Magit asynchronous section support -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021 Damien Merenne <dam@cosinux.org>
 
